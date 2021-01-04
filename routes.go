@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+
 	"github.com/gorilla/mux"
 )
 
@@ -9,21 +10,23 @@ type Route struct {
 	name string
 	method string
 	pattern string
-	handledFunc http.HandlerFunc
+	handleFunc http.HandlerFunc
 }
 
 type Routes []Route
 
 func NewRouter() *mux.Router {
-	router := mux.NewRouter().StaticSlash(true)
+	router := mux.NewRouter().StrictSlash(true)
 
 	for _, route := range routes{
-		route. 
-		Name(route.name).		
-		Methods(route.method).
-		Path(route.pattern).
-		Handler(route.handledFunc)
+		router. 
+				Name(route.name).		
+				Methods(route.method).
+				Path(route.pattern).
+				Handler(route.handleFunc)
 	} 
+
+	return router
 }
 
 var routes = Routes{
@@ -31,12 +34,12 @@ var routes = Routes{
 		"Index",
 		"GET",
 		"/",
-		Index
+		Index,
 	},
 	Route{
 		"Planets",
 		"GET",
 		"/planets",
-		Planets
+		PlanetList,
 	},
 }

@@ -1,6 +1,7 @@
 package main
+
 type Planet struct {
-	name string `json:"name"`
+	name string
 }
 
 type Planets []Planet
