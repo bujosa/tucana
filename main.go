@@ -4,12 +4,18 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func main(){
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request){
-        fmt.Fprintf(w, "Hola mundo desde el servidor web con GO")
-	})
-	server := http.ListenAndServe(":8080", nil)
+
+	router := mux.NewRouter().StrictSlash(true)
+	router.HandleFunc("/",Index)
+	server := http.ListenAndServe(":8080", router)
 	log.Fatal(server)
+}
+
+func Index(w http.ResponseWriter, r *http.Request){
+	fmt.Fprintf(w, "Hola mundo desde el servidor web con GO")
 }
