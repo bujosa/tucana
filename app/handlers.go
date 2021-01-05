@@ -1,7 +1,9 @@
 package app
 
 import (
+	"encoding/json"
 	"net/http"
+	"saturn-golang/service"
 )
 
 type Planet struct {
@@ -14,7 +16,6 @@ type PlanetHandlers struct {
 
 func (ch *PlanetHandlers) getAllPlanets(w http.ResponseWriter, r *http.Request){
     planets, _ := ch.service.GetAllPlanets() 
-	w.Header().Add(key: "Content-Type", value:"application/json")
+	w.Header().Add("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(planets)
-	return planets
 }

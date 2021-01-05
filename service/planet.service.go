@@ -1,10 +1,9 @@
 package service
 
-import (
-	"saturn/golang/domain"
-)
+import "saturn-golang/domain"
+
 type IPlanetService interface {
-	GetAllPlanets() (domain.Planet, error)
+	GetAllPlanets() ([]domain.Planet, error)
 }
 
 type DefaultPlanetService struct {

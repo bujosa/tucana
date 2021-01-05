@@ -14,7 +14,7 @@ func Start() {
 	router:= mux.NewRouter()
 
 	// wiring
-	ch:= CustomerHandlers{ service: service.NewPlanetService(domain.NewPlanetRepositoryStub())}
+	ch:= PlanetHandlers{ service: service.NewPlanetService(domain.NewPlanetRepositoryStub())}
 
 	// define routes
 	router.HandleFunc("/planets", ch.getAllPlanets).Methods(http.MethodGet)
