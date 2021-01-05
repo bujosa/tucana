@@ -8,10 +8,10 @@ type DefaultPlanetService struct {
 	repo domain.IPlanetRespository
 }
 
-func ( s DefaultPlanetService) GetAllPlanets() ([]domain.Planet, error){
+func (s DefaultPlanetService) GetAllPlanets() ([]domain.Planet, error) {
 	return s.repo.FindAll()
 }
 
 func NewPlanetService(repository domain.IPlanetRespository) DefaultPlanetService {
-	return DefaultPlanetService(repo: repository)
+	return DefaultPlanetService{repo: repository}
 }
