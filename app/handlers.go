@@ -7,8 +7,8 @@ import (
 )
 
 type Planet struct {
-	id string
-	name string
+	id   string  
+	name string   
 }
 type PlanetHandlers struct {
 	service service.IPlanetService

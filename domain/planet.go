@@ -1,7 +1,7 @@
 package domain
 
 type Planet struct {
-	id   string "json"
+	id   string
 	name string
 }
 
