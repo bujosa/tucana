@@ -1,17 +1,24 @@
 package app
 
 import (
-	"net/http"
 	"log"
+	"net/http"
+	"saturn-golang/domain"
+	"saturn-golang/service"
+
 	"github.com/gorilla/mux"
-	"fmt"
 )
 
 func Start() {
 	// mux
 	router:= mux.NewRouter()
+
+	// wiring
 	ch:= CustomerHandlers{ service: service.NewPlanetService(domain.NewPlanetRepositoryStub())}
+
 	// define routes
-	router.HandleFunc(path: "/planets", ch.getAllPlanets).Methods(http.MethodGet)
-	log.Fatal(http.ListenAndServe( addr: "localhost:8000", router))
+	router.HandleFunc("/planets", ch.getAllPlanets).Methods(http.MethodGet)
+
+	//  stating server
+	log.Fatal(http.ListenAndServe( "localhost:8000", router))
 }

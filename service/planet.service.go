@@ -1,5 +1,6 @@
 package service
 
+import "saturn/golang/domain"
 type IPlanetService interface {
 	GetAllPlanets() (domain.Planet, error)
 }

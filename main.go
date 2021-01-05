@@ -1,6 +1,6 @@
 package main
 
-import "github.com/ashishjuyal/banking/app"
+import "saturn-golang/app"
 
 func main() {
 	app.Start()
