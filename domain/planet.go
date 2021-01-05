@@ -1,7 +1,10 @@
 package domain
 
 type Planet struct {
+	id   string
 	name string
 }
 
-type Planets []Planet
+type IPlanetRespository interface {
+	FindAll() ([]Planet, error)
+}
