@@ -3,8 +3,8 @@ package domain
 import "gopkg.in/mgo.v2/bson"
 
 type Planet struct {
-	_id  bson.ObjectId    `json:"id,omitempty"`
-	name string           `json:"name,omitempty"`
+    Id      bson.ObjectId `json:"id,omitempty" bson:"_id,omitempty"`
+    Name    string        `json:"name,omitempty" bson:"name,omitempty"`
 }
 type IPlanetRespository interface {
 	FindAll() ([]Planet, error)

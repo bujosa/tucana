@@ -11,10 +11,9 @@ import (
 )
 
 type Planet struct {
-	_id  bson.ObjectId    `json:"id,omitempty"`
-	name string           `json:"name,omitempty"`
+    Id      bson.ObjectId `json:"id,omitempty" bson:"_id,omitempty"`
+    Name    string        `json:"name,omitempty" bson:"name,omitempty"`
 }
-
 type PlanetHandlers struct {
 	service service.IPlanetService
 }
@@ -29,7 +28,6 @@ func (ch *PlanetHandlers) getAllPlanets(w http.ResponseWriter, r *http.Request){
 func (ch *PlanetHandlers) getPlanet(w http.ResponseWriter, r *http.Request){
 	vars:= mux.Vars(r)
 	id := vars["id"]
-	fmt.Println("id: ",id)
 	oid := bson.ObjectIdHex(id)
 	planet, err := ch.service.GetPlanet(oid) 
 	if err != nil {

@@ -1,7 +1,6 @@
 package domain
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -29,7 +28,6 @@ func getSession() *mgo.Session {
 func (d PlanetRepositoryDb) FindAll() ([]Planet, error) {
    var results []Planet
    err := d.collection.Find(nil).All(&results)
-   fmt.Println("resultados:", results[1].name)
    if err != nil {
 	   log.Fatal(err)
    }
@@ -39,7 +37,6 @@ func (d PlanetRepositoryDb) FindAll() ([]Planet, error) {
 func (d PlanetRepositoryDb) ById(id bson.ObjectId) (*Planet, error){
    result := Planet{}
    err:= d.collection.FindId(id).One(&result)
-   fmt.Println(result)
    if err != nil{
       log.Fatal(err)
    }
