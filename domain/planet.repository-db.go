@@ -7,6 +7,7 @@ import (
 
 	"github.com/joho/godotenv"
 	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 type PlanetRepositoryDb struct {
@@ -35,10 +36,10 @@ func (d PlanetRepositoryDb) FindAll() ([]Planet, error) {
    return results, nil
 }
 
-func (d PlanetRepositoryDb) ByName(name string) (*Planet, error){
+func (d PlanetRepositoryDb) ById(id bson.ObjectId) (*Planet, error){
    result := Planet{}
-   err:= d.collection.Find({name:nam}).One(&result)
-
+   err:= d.collection.FindId(id).One(&result)
+   fmt.Println(result)
    if err != nil{
       log.Fatal(err)
    }

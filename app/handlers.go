@@ -28,9 +28,10 @@ func (ch *PlanetHandlers) getAllPlanets(w http.ResponseWriter, r *http.Request){
 
 func (ch *PlanetHandlers) getPlanet(w http.ResponseWriter, r *http.Request){
 	vars:= mux.Vars(r)
-	name := vars["name"]
-	fmt.Println("name: ",name)
-	planet, err := ch.service.GetPlanet(name) 
+	id := vars["id"]
+	fmt.Println("id: ",id)
+	oid := bson.ObjectIdHex(id)
+	planet, err := ch.service.GetPlanet(oid) 
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 	}else{

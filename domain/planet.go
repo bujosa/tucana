@@ -8,5 +8,5 @@ type Planet struct {
 }
 type IPlanetRespository interface {
 	FindAll() ([]Planet, error)
-	ByName(string) (*Planet, error)
+	ById(bson.ObjectId) (*Planet, error)
 }

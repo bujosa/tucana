@@ -18,7 +18,7 @@ func Start() {
 
 	// define routes
 	router.HandleFunc("/planets", ch.getAllPlanets).Methods(http.MethodGet)
-	router.HandleFunc("/planet/{name}", ch.getPlanet).Methods(http.MethodGet)
+	router.HandleFunc("/planet/{id}", ch.getPlanet).Methods(http.MethodGet)
 
 	//  stating server
 	log.Fatal(http.ListenAndServe( "localhost:8000", router))
