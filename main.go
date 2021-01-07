@@ -1,6 +1,8 @@
 package main
 
-import "saturn-golang/app"
+import (
+	"saturn-golang/app"
+)
 
 func main() {
 	app.Start()

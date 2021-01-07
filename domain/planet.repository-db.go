@@ -2,17 +2,25 @@ package domain
 
 import (
 	"log"
+	"os"
 
+	"github.com/joho/godotenv"
 	"gopkg.in/mgo.v2"
 	// "gopkg.in/mgo.v2/bson"
 )
+
 type PlanetRepositoryDb struct {
+   collection *mgo.Collection
 }
 
 var collection = getSession().DB("saturn").C("planets")
 
 func getSession() *mgo.Session {
-   session, err := mgo.Dial("mongodb://localhost")
+   err := godotenv.Load()
+   if err != nil {
+     log.Fatal("Error loading .env file")
+   }
+   session, err := mgo.Dial(os.Getenv("MONGO_URL"))
    if err != nil {
 	 	panic(err)
    }
