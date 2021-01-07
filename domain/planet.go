@@ -7,4 +7,5 @@ type Planet struct {
 
 type IPlanetRespository interface {
 	FindAll() ([]Planet, error)
+	ById(string) (*Planet, error)
 }

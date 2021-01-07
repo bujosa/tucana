@@ -4,6 +4,7 @@ import "saturn-golang/domain"
 
 type IPlanetService interface {
 	GetAllPlanets() ([]domain.Planet, error)
+	GetPlanet(string) (*domain.Planet, error)
 }
 
 type DefaultPlanetService struct {
@@ -11,6 +12,10 @@ type DefaultPlanetService struct {
 }
 
 func (s DefaultPlanetService) GetAllPlanets() ([]domain.Planet, error) {
+	return s.repo.FindAll()
+}
+
+func (s DefaultPlanetService) GetPlanet() ([]domain.Planet, error) {
 	return s.repo.FindAll()
 }
 
