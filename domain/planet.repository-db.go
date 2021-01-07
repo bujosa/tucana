@@ -3,4 +3,6 @@ package domain
 type PlanetRepositoryDb struct {
 }
 
-func (d PlanetRepositoryDb) FindAll() []Planet
+func (d PlanetRepositoryDb) FindAll() ([]Planet, error) {
+
+}
