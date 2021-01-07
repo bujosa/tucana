@@ -13,8 +13,6 @@ type PlanetRepositoryDb struct {
    collection *mgo.Collection
 }
 
-var collection = getSession().DB("saturn").C("planets")
-
 func getSession() *mgo.Session {
    err := godotenv.Load()
    if err != nil {
@@ -29,7 +27,7 @@ func getSession() *mgo.Session {
 
 func (d PlanetRepositoryDb) FindAll() ([]Planet, error) {
    var results []Planet
-   err := collection.Find(nil).All(&results)
+   err := d.collection.Find(nil).All(&results)
    if err != nil {
 	   log.Fatal(err)
    }
@@ -38,7 +36,7 @@ func (d PlanetRepositoryDb) FindAll() ([]Planet, error) {
 
 func (d PlanetRepositoryDb) ById(id string) (*Planet, error){
    result := Planet{}
-   err:= collection.FindId(id).One(&result)
+   err:= d.collection.FindId(id).One(&result)
 
    if err != nil{
       log.Fatal(err)
@@ -47,5 +45,6 @@ func (d PlanetRepositoryDb) ById(id string) (*Planet, error){
 }
 
 func NewPlanetRepositoryDb() PlanetRepositoryDb {
-	
+   collection := getSession().DB("saturn").C("planets")
+   return PlanetRepositoryDb{collection: collection}
 }
