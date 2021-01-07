@@ -1,7 +1,7 @@
 package domain
 
 type Planet struct {
-	id   string
+	_id  string
 	name string
 }
 
