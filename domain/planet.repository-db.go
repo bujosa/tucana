@@ -38,6 +38,6 @@ func (d PlanetRepositoryDb) ById(id string) (*Planet, error){
    return &result, nil
 }
 
-// func NewPlanetRespositoryDb() PlanetRepositoryDb {
+func NewPlanetRepositoryDb() PlanetRepositoryDb {
 	
-// }
+}
