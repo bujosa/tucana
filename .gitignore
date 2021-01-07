@@ -1,3 +1,7 @@
 #modules files
 go.sum
 go.mod
+
+
+#env files
+.env
