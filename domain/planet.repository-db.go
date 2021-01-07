@@ -1,12 +1,12 @@
 package domain
 
 import (
+	"fmt"
 	"log"
 	"os"
 
 	"github.com/joho/godotenv"
 	"gopkg.in/mgo.v2"
-	// "gopkg.in/mgo.v2/bson"
 )
 
 type PlanetRepositoryDb struct {
@@ -28,15 +28,16 @@ func getSession() *mgo.Session {
 func (d PlanetRepositoryDb) FindAll() ([]Planet, error) {
    var results []Planet
    err := d.collection.Find(nil).All(&results)
+   fmt.Println("resultados:", results[1].name)
    if err != nil {
 	   log.Fatal(err)
    }
    return results, nil
 }
 
-func (d PlanetRepositoryDb) ById(id string) (*Planet, error){
+func (d PlanetRepositoryDb) ByName(name string) (*Planet, error){
    result := Planet{}
-   err:= d.collection.FindId(id).One(&result)
+   err:= d.collection.Find({name:nam}).One(&result)
 
    if err != nil{
       log.Fatal(err)

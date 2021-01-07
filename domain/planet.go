@@ -1,11 +1,12 @@
 package domain
 
-type Planet struct {
-	_id  string
-	name string
-}
+import "gopkg.in/mgo.v2/bson"
 
+type Planet struct {
+	_id  bson.ObjectId    `json:"id,omitempty"`
+	name string           `json:"name,omitempty"`
+}
 type IPlanetRespository interface {
 	FindAll() ([]Planet, error)
-	ById(string) (*Planet, error)
+	ByName(string) (*Planet, error)
 }

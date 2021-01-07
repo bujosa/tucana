@@ -15,8 +15,8 @@ func (s DefaultPlanetService) GetAllPlanets() ([]domain.Planet, error) {
 	return s.repo.FindAll()
 }
 
-func (s DefaultPlanetService) GetPlanet(id string) (*domain.Planet, error) {
-	return s.repo.ById(id)
+func (s DefaultPlanetService) GetPlanet(name string) (*domain.Planet, error) {
+	return s.repo.ByName(name)
 }
 
 func NewPlanetService(repository domain.IPlanetRespository) DefaultPlanetService {

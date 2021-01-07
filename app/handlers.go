@@ -7,12 +7,14 @@ import (
 	"saturn-golang/service"
 
 	"github.com/gorilla/mux"
+	"gopkg.in/mgo.v2/bson"
 )
 
 type Planet struct {
-	_id   string  
-	name string   
+	_id  bson.ObjectId    `json:"id,omitempty"`
+	name string           `json:"name,omitempty"`
 }
+
 type PlanetHandlers struct {
 	service service.IPlanetService
 }
@@ -26,8 +28,9 @@ func (ch *PlanetHandlers) getAllPlanets(w http.ResponseWriter, r *http.Request){
 
 func (ch *PlanetHandlers) getPlanet(w http.ResponseWriter, r *http.Request){
 	vars:= mux.Vars(r)
-	id := vars["planet_id"]
-	planet, err := ch.service.GetPlanet(id) 
+	name := vars["name"]
+	fmt.Println("name: ",name)
+	planet, err := ch.service.GetPlanet(name) 
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 	}else{
