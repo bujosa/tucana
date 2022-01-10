@@ -24,6 +24,7 @@ func (s DefaultPlanetService) GetPlanet(id bson.ObjectId) (*domain.Planet, error
 	return s.repo.ById(id)
 }
 
+// Create new planet
 func NewPlanetService(repository domain.IPlanetRespository) DefaultPlanetService {
 	return DefaultPlanetService{repo: repository}
 }
