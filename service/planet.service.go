@@ -20,6 +20,7 @@ func (s DefaultPlanetService) GetAllPlanets() ([]domain.Planet, error) {
 	return s.repo.FindAll()
 }
 
+// Get planet by id
 func (s DefaultPlanetService) GetPlanet(id bson.ObjectId) (*domain.Planet, error) {
 	return s.repo.ById(id)
 }
