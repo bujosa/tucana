@@ -16,6 +16,7 @@ type DefaultPlanetService struct {
 	repo domain.IPlanetRespository
 }
 
+// Get all planets
 func (s DefaultPlanetService) GetAllPlanets() ([]domain.Planet, error) {
 	return s.repo.FindAll()
 }
